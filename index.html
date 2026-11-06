@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#160d18">
+
+<title>A Little Something For Darling</title>
+
+<style>
+:root {
+    --rose: #f3a9bd;
+    --cream: #fff4ed;
+    --muted: #ddc8d0;
+    --gold: #e8c9a5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--cream);
+    font-family: Georgia, 'Times New Roman', serif;
+    overflow-x: hidden;
+    background:
+        radial-gradient(ellipse at 15% 15%, rgba(147,65,100,.3), transparent 36%),
+        radial-gradient(ellipse at 85% 80%, rgba(95,55,100,.3), transparent 38%),
+        linear-gradient(145deg,#100a13,#241322 55%,#120c17);
+}
+
+.glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 42%,rgba(255,186,208,.09),transparent 48%);
+}
+
+.sparkles {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.sparkle {
+    position: absolute;
+    color: rgba(255,218,230,.72);
+    animation: drift 10s linear infinite;
+    opacity: 0;
+}
+
+@keyframes drift {
+    0% {
+        transform: translateY(25px) scale(.6);
+        opacity: 0;
+    }
+    15% { opacity: .8; }
+    85% { opacity: .65; }
+    100% {
+        transform: translateY(-110vh) scale(1.2) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+main {
+    width: min(790px,calc(100% - 30px));
+    margin: auto;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 55px 0;
+    position: relative;
+}
+
+.card {
+    width: 100%;
+    text-align: center;
+    padding: clamp(28px,6vw,62px) clamp(20px,7vw,70px);
+    border: 1px solid rgba(255,220,232,.24);
+    border-radius: 28px;
+    background: linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+    box-shadow: 0 25px 90px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.08);
+    backdrop-filter: blur(10px);
+    animation: appear 1.2s ease both;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.eyebrow {
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: .28em;
+    font: 11px/1.6 Arial,sans-serif;
+}
+
+.heart {
+    display: inline-block;
+    color: var(--rose);
+    font-size: 37px;
+    margin: 20px 0 10px;
+    animation: pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 14px rgba(243,169,189,.45));
+}
+
+@keyframes pulse {
+    50% { transform: scale(1.13); }
+}
+
+h1 {
+    margin: 4px 0 15px;
+    font-size: clamp(42px,9vw,70px);
+    font-weight: normal;
+    line-height: 1.04;
+    letter-spacing: -.035em;
+}
+
+h1 span {
+    color: var(--rose);
+    font-style: italic;
+}
+
+.intro {
+    max-width: 490px;
+    margin: 0 auto;
+    color: var(--muted);
+    font: 15px/1.85 Arial,sans-serif;
+}
+
+button {
+    margin-top: 29px;
+    border: 1px solid rgba(255,224,235,.55);
+    border-radius: 999px;
+    padding: 15px 27px;
+    cursor: pointer;
+    color: #24121c;
+    background: linear-gradient(110deg,#f5c1d0,#e9c9ac);
+    font: 600 12px Arial,sans-serif;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: transform .2s,box-shadow .2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 26px rgba(243,169,189,.25);
+}
+
+button:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+}
+
+.poem {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 1.2s ease,opacity .8s ease,margin .8s ease;
+    margin-top: 0;
+}
+
+.poem.open {
+    max-height: 2600px;
+    opacity: 1;
+    margin-top: 36px;
+}
+
+.divider {
+    width: 58px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 25px;
+}
+
+.poem h2 {
+    color: var(--rose);
+    font-size: clamp(25px,5vw,34px);
+    font-weight: normal;
+    font-style: italic;
+    margin: 0 0 24px;
+}
+
+.verse {
+    color: var(--cream);
+    font-size: clamp(16px,3.5vw,19px);
+    line-height: 1.9;
+    margin: 0 auto 23px;
+}
+
+.signature {
+    color: var(--rose);
+    font-style: italic;
+    margin-top: 27px;
+    font-size: 19px;
+}
+
+footer {
+    margin-top: 32px;
+    color: rgba(255,244,237,.48);
+    font: 10px Arial,sans-serif;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *,*::before,*::after {
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow" aria-hidden="true"></div>
+<div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+<main>
+<section class="card" aria-labelledby="title">
+
+<div class="eyebrow">
+A little something, just because
+</div>
+
+<div class="heart" aria-hidden="true">♡</div>
+
+<h1 id="title">For <span>Darling</span></h1>
+
+<p class="intro">
+No birthday, no anniversary, no special occasion.
+I just wanted to make an ordinary day feel a little
+more special — and remind you how much you mean to me.
+</p>
+
+<button id="revealButton" type="button"
+aria-expanded="false" aria-controls="poem">
+Click me
+</button>
+
+<div class="poem" id="poem">
+
+<div class="divider"></div>
+
+<h2>A Little Reminder</h2>
+
+<p class="verse">
+If the day feels heavy, and the sky forgets its blue,<br>
+I hope a little happiness finds its way to you.<br>
+Because even on the ordinary days that come and go,<br>
+You bring a kind of sunshine that you may not even know.
+</p>
+
+<p class="verse">
+It's in the little moments, in the laughter that we share,<br>
+In the simplest conversations, and the fact that you are there.<br>
+It's in the way a quiet day can turn into something bright,<br>
+Just because I got to spend a little of it by your side.
+</p>
+
+<p class="verse">
+You don't have to be perfect, you don't have to always shine,<br>
+You can have your cloudy mornings; you can take your time.<br>
+I hope you know you're valued, in the big things and the small,<br>
+Not just when you're at your brightest, but on days when you feel less than all.
+</p>
+
+<p class="verse">
+May good things come to find you, may your dreams have room to grow,<br>
+May you find a hundred reasons to smile more than you know.<br>
+May kindness walk beside you, may your worries feel less loud,<br>
+And may you never doubt the lovely person you are now.
+</p>
+
+<p class="verse">
+So here's a little note, Darling, with no occasion to explain,<br>
+Just a few sincere words sent to brighten up your day.<br>
+If this makes you smile for even just a moment or two,<br>
+Then this small surprise has done exactly what I hoped it would do.
+</p>
+
+<p class="verse">
+And if I have to leave before the night is through,<br>
+Please know that I'll be thinking fondly of you.<br>
+I'm sorry that I'm leaving; my PC is running low,<br>
+But I didn't want to go without letting you know:
+</p>
+
+<p class="verse">
+I love you so, so much, more than these few lines can show.<br>
+Even when I'm not right here, I hope you'll always know.<br>
+Take care of yourself, my lovely Darling, until we talk again,<br>
+And keep this little note close whenever you need a smile.
+</p>
+
+<p class="signature">
+With all my love,<br>
+click me ♡
+</p>
+
+</div>
+
+<footer>
+Made with care · Just for you
+</footer>
+
+</section>
+</main>
+
+<script>
+
+const button = document.getElementById('revealButton');
+const poem = document.getElementById('poem');
+
+button.addEventListener('click', () => {
+
+    const open = poem.classList.toggle('open');
+
+    button.setAttribute('aria-expanded', String(open));
+
+    button.textContent = open ? 'Read it again' : 'Click me';
+
+});
+
+const field = document.getElementById('sparkles');
+
+const symbols = ['✦','·','♡','✧'];
+
+for (let i = 0; i < 28; i++) {
+
+    const item = document.createElement('span');
+
+    item.className = 'sparkle';
+
+    item.textContent = symbols[i % symbols.length];
+
+    item.style.left = Math.random() * 100 + '%';
+
+    item.style.top = (65 + Math.random() * 55) + '%';
+
+    item.style.animationDelay = Math.random() * 10 + 's';
+
+    item.style.animationDuration = (7 + Math.random() * 8) + 's';
+
+    item.style.fontSize = (10 + Math.random() * 15) + 'px';
+
+    field.appendChild(item);
+
+}
+
+</script>
+
+</body>
+</html>
